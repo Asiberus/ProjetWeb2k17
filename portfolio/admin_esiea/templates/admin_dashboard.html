@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <section class="row">
+        <h1 class="col-md-12">Admin Dashboard</h1>
+        <section class="col-md-offset-1 col-md-11">
+            <div class="row">
+                <h2 class="col-md-2">Photo</h2>
+                <a class="col-md-1 pull-right btn btn-primary" href="{% url 'photo_add' password_hash=password_hash %}">Add</a>
+                <table class="col-md-12 table table-condensed table-hover">
+                    {% for photo in photos %}
+                        <tr>
+                            <td>{{photo.titre}}</td>
+                            <td>{{photo.description|truncatewords:10}}</td>
+                            <td>{{photo.date_photo|date:'M, Y'}}</td>
+                            <td><a class="btn btn-info" href="{% url 'photo_edit' id=photo.id password_hash=password_hash %}">Edit</a></td>
+                            <td><a class="btn btn-danger" href="{% url 'photo_delete' id=photo.id password_hash=password_hash %}">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="row">
+                <h2 class="col-md-2">Video</h2>
+                <a class="col-md-1 pull-right btn btn-primary" href="{% url 'video_add' password_hash=password_hash %}">Add</a>
+                <table class="col-md-12 table table-condensed table-hover">
+                    {% for video in videos %}
+                        <tr>
+                            <td>{{video.titre}}</td>    
+                            <td>{{video.description|truncatewords:10}}</td>
+                            <td>{{video.date_video|date:'M, Y'}}</td>
+                            <td><a class="btn btn-info" href="{% url 'video_edit' id=video.id password_hash=password_hash %}">Edit</a></td>
+                            <td><a class="btn btn-danger" href="{% url 'video_delete' id=video.id password_hash=password_hash %}">Delete</a></td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+            <div class="row">
+                <h2 class="col-md-12">Contact</h2>
+                <table class="col-md-12 table table-condensed table-hover">
+                    {% for contact in contacts %}
+                        <tr>
+                            <td>{{contact.sujet}}</td>
+                            <td>{{contact.message|truncatewords:10}}</td>
+                            <td>{{contact.envoyeur}}</td>
+                            <td>{{contact.date_envoi}}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </section>
+    </section>
+{% endblock %}
+
+
+<!-- style="border: 1px solid black;" -->

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block template %}
+    <link rel="stylesheet" href="{% static 'css/video/video_show_one.css' %}"/>
+{% endblock %}
+
+{% block photo_active %}class=""{% endblock %}
+{% block video_active %}class="active"{% endblock %}
+{% block contact_active %}class=""{% endblock %}
+
+{% block content %}
+    <section class="row">
+        <div class="col-md-1">
+            <a class="btn btn-default black" href="{% url 'video_show_all' %}">Retour</a>
+        </div>
+        <div class="col-md-10">
+            <section class="row">
+                <h2 class="col-md-12">{{video.titre}}</h2>
+                <hr class="col-md-12"/>
+                <div class="col-md-12 embed-responsive embed-responsive-16by9">
+                     <iframe class="embed-responsive-item" src="{{video.lien}}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                </div>
+                <p class="col-md-11 description">{{video.description}}</p>
+                <aside class="col-md-2 pull-right">
+                    <strong>Date de parution<br/>{{video.date_video|date:'M, Y'}}</strong>
+                </aside>
+            </section>
+        </div>
+    </section>
+{% endblock %}

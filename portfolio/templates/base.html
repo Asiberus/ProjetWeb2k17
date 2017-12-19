@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <title>{% block title %}Raphael Beekmann{% endblock %}</title>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'template.css' %}"/>
+        {% block template %}{% endblock %}
+    </head>
+    <body>
+        <div class="container">
+            <nav class="navbar navbar-inverse navbar-fixed-top">
+                <div class="container">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="{% url 'accueil' %}">Raphael Beekmann</a>
+                    </div>
+                    <ul class="nav navbar-nav">
+                        <li {% block photo_active %}{% endblock %}><a href="{% url 'photo_show_all' %}">Photo</a></li>
+                        <li {% block video_active %}{% endblock %}><a href="{% url 'video_show_all' %}">Vidéo</a></li>
+                        <li {% block contact_active %}{% endblock %}><a href="{% url 'contact' %}">Contact</a></li>
+                        <li></li>
+                    </ul>
+                </div>
+            </nav>
+            
+            {% block content %}{% endblock %}
+            
+            <footer class="row">
+                <hr class="col-md-12" style="background-color: #777"/>
+                <p class="col-md-offset-1 col-md-6">Raphael Beekmann &#38; François Flambard - Web Project</p>
+                <p class="col-md-2 pull-right">Esiea 2017</p>
+            </footer>
+            
+            </div>
+    </body>
+</html>

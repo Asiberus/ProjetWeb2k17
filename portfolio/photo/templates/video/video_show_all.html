@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block template %}
+    <link rel="stylesheet" href="{% static 'css/video/video_show_all.css' %}"/>
+{% endblock %}
+
+{% block photo_active %}class=""{% endblock %}
+{% block video_active %}class="active"{% endblock %}
+{% block contact_active %}class=""{% endblock %}
+
+{% block content %}
+    {% for video in videos %}
+    <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+            <section class="row">
+                <h3 class="col-md-12">{{video.titre}}</h3>
+                <div class="col-md-12 embed-responsive embed-responsive-16by9">
+                    <iframe class="embed-responsive-item" src="{{video.lien}}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+                </div>
+                <p class="col-md-12 description">{{video.description|truncatewords:12}}</p>
+                <div class="col-md-2">
+                    <strong>{{video.date_video|date:'M, Y'}}</strong>
+                </div>
+                <aside class="col-md-2 pull-right">
+                    <a class="btn btn-default" href="{% url 'video_show_one' slug=video.slug %}">Lire la suite</a>
+                </aside>
+            </section>
+            <hr/>
+        </div>
+    </div>
+    {% endfor %}
+    
+    
+{% endblock %}

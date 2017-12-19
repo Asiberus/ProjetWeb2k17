@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% load bootstrap %}
+
+{% block content %}
+    <section class="row">
+        <div class="col-md-2">
+            <a class="btn btn-default" href="{% url 'admin' password_hash=password_hash%}">Retour</a>
+        </div>
+        <h2 class=col-md-12>Modifier une photo</h2>
+        <div class="col-md-5">
+            <form action="{% url 'photo_edit' id=photo.id password_hash=password_hash %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                
+                {{form.non_field_errors}}
+                
+                <div class="fieldWrapper">
+                    {{form.titre.errors}}
+                    {{form.titre|bootstrap}}
+                </div>
+                
+                <div class="fieldWrapper">
+                    {{form.description.errors}}
+                    {{form.description|bootstrap}}
+                </div>
+                
+                <div class="fieldWrapper">
+                    {{form.date_photo.errors}}
+                    {{form.date_photo|bootstrap}}
+                </div>
+                
+                <input type="submit" value="Modifier" class="btn btn-primary pull-right"/>
+            </form>
+        </div>
+        <div class="col-md-offset-1 col-md-6">
+            <img class="img-responsive" src="{{photo.photo.url}}"/>
+        </div>
+    </section>
+{% endblock %}
+
+
+
+
+
+
+

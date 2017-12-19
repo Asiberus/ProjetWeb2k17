@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block template %}
+    <link rel="stylesheet" href="{% static 'css/photo/photo_show_one.css' %}"/>
+{% endblock %}
+
+{% block photo_active %}class="active"{% endblock %}
+{% block video_active %}classe=""{% endblock %}
+{% block contact_active %}class=""{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <div class="col-md-1">
+            {% if isFirst %}
+                <a class="btn btn-default black" href="{% url 'photo_show_all' %}" id="btn-retour">Retour</a>
+            {% else %}
+                <a class="btn btn-default black" href="{% url 'photo_show_all' %}#{{photo.id}}" id="btn-retour">Retour</a>
+            {% endif %}
+        </div>
+        <div class="col-md-10">
+            <section class="row">
+                <h2 class="col-md-12">{{photo.titre}}</h2>
+                <hr class="col-md-12"/>
+                <div class="col-md-12">
+                    <img class="img-rounded img-responsive" src="{{photo.photo.url}}" />
+                </div>
+                <section class="col-md-12">
+                    <div class="row">
+                        <p class="col-md-10 description">{{photo.description}}</p>
+                        <aside class="col-md-2 pull-right">
+                            <strong>Date de la photo {{photo.date_photo|date:'M, Y'}}</strong>
+                        </aside>
+                    </div>
+                </section>
+            </section>
+        </div>
+    </div>
+{% endblock %}

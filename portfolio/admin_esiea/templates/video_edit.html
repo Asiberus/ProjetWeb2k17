@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load bootstrap %}
+
+{% block content %}
+    <section class="row">
+        <div class="col-md-2">
+            <a class="btn btn-default" href="{% url 'admin' password_hash=password_hash%}">Retour</a>
+        </div>
+        <h2 class=col-md-12>Modifier une video</h2>
+        <div class="col-md-5">
+            <form action="{% url 'video_edit' id=video.id password_hash=password_hash %}" method="post">
+                {% csrf_token %}
+                
+                {{form|bootstrap}}
+                
+                <input type="submit" value="Modifier" class="btn btn-primary pull-right"/>
+            </form>
+        </div>
+        <div class="col-md-offset-1 col-md-6">
+           <iframe width="500" height="315" src="{{video.lien}}" frameborder="0" gesture="media" allow="encrypted-media" allowfullscreen></iframe>
+        </div>
+    </section>
+{% endblock %}
+
+
+
+
+
+
+

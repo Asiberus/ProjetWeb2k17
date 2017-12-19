@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% load bootstrap %}
+
+{% block photo_active %}class=""{% endblock %}
+{% block video_active %}class=""{% endblock %}
+{% block contact_active %}class="active"{% endblock %}
+
+{% block content %}
+    <section class="row">
+        {% if envoi %}
+            <div class="alert col-md-12 alert-info">
+                <strong>Message bien envoyé!</strong>
+            </div>
+        {% endif %}
+        <h2 class="col-md-12">Envoyez moi un message :</h2>
+        <div class="col-md-offset-1 col-md-6">
+            <form action="{% url 'contact' %}" method="post">
+                {% csrf_token %}
+                {{form|bootstrap}}
+                <input type="submit" value="Envoyer" class="btn btn-default pull-right"/>
+            </form>
+        </div>
+    </section>
+{% endblock %}

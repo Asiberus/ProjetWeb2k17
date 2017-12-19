@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block template %}
+    <link rel="stylesheet" href="{% static 'css/photo/photo_show_all.css' %}"/>
+{% endblock %}
+
+{% block photo_active %}class="active"{% endblock %}
+{% block video_active %}classe=""{% endblock %}
+{% block contact_active %}class=""{% endblock %}
+
+{% block content %}
+    {% for photo in photos %}
+        <div class="row" id="{{photo.id}}">
+            <div class="col-md-offset-2 col-md-8">
+                <section class="row">
+                    <h3 class="col-md-12">{{photo.titre}}</h3>
+                    <a class=" col-md-12" href="{% url 'photo_show_one' slug=photo.slug %}">
+                        <img class="img-responsive img-rounded" src="{{photo.photo.url}}"/>
+                    </a>
+                    <p class="col-md-12 description">{{photo.description|truncatewords:12}}</p>
+                    <strong class="col-md-2">{{photo.date_photo|date:'M, Y'}}</strong>
+                    <a href="{% url 'photo_show_one' slug=photo.slug %}" class="btn btn-default col-md-2 pull-right">Lire la suite</a>
+                </section>
+                <hr/>
+            </div>
+        </div>
+            
+    {% endfor %}
+{% endblock %}
+
